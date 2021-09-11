@@ -4,7 +4,7 @@
 
 <head>
     
-    <title>超级午默共同体</title>
+    <title>标签：Apisix - 超级午默共同体</title>
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta name="keywords" content="">
@@ -15,15 +15,15 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <meta property="og:type" content="website">
 <meta property="og:title" content="超级午默共同体">
-<meta property="og:url" content="http://cn-wumo.top/index.html">
+<meta property="og:url" content="http://cn-wumo.top/tags/Apisix/index.html">
 <meta property="og:site_name" content="超级午默共同体">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="cn_wumo">
 <meta name="twitter:card" content="summary">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
-    <link rel="stylesheet" href="/css/style.css?v=1631356937210">
+    <link rel="stylesheet" href="/css/style.css?v=1631356937213">
     
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1631356937210">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1631356937213">
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 <body class="mdui-drawer-body-left">
@@ -53,7 +53,7 @@
     </div>
     <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple true" href="/" title="回到首页">
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
             <i class="mdui-list-item-icon nexmoefont icon-home"></i>
             <div class="mdui-list-item-content">
                 回到首页
@@ -322,86 +322,6 @@
         </article>
     </div>
     
-    <div class="nexmoe-post">
-        <a href="/2021/09-06-Docker%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84etcd%E9%9B%86%E7%BE%A4%E7%9A%84%E6%90%AD%E5%BB%BA/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
-                    <img data-src="https://cdn.jsdelivr.net/gh/cn-wumo/cn-wumo.github.io@latest/images/Docker环境下的etcd集群的搭建.jpg" data-sizes="auto" alt="Docker环境下的etcd集群的搭建" class="lazyload">
-                    <h1>Docker环境下的etcd集群的搭建</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2021年09月06日</a>
-            <a><i class="nexmoefont icon-areachart"></i>573 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
-        </div>
-
-        <article>
-            
-                <p>基于centos容器运行etcd集群，默认<code>2379</code>端口是客户监听端口，<code>2380</code>是集群监听端口</p>
-<p>centos下的单节点etcd运行可见<br><a href="http://cn-wumo.top/2021/09-05-CentOS%E4%B8%8B%E7%9A%84etcd%E7%9A%84%E6%90%AD%E5%BB%BA">http://cn-wumo.top/2021/09-05-CentOS下的etcd的搭建</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run –name etcd_1 –p 12379:2379 –p 12380:2380 –it centos /bin/bash</span><br><span class="line">docker run –name etcd_2 –p 22379:2379 –p 22380:2380 –it centos /bin/bash</span><br><span class="line">docker run –name etcd_3 –p 32379:2379 –p 32380:2380 –it centos /bin/bash</span><br></pre></td></tr></table></figure>
-<p>不带ssl证书的集群搭建，三个容器都要启动</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">./etcd -name etcd_1 \</span><br><span class="line">  -advertise-client-urls https://0.0.0.0:2379 \</span><br><span class="line">  -listen-client-urls https://0.0.0.0:2379 \</span><br><span class="line">  -listen-peer-urls https://0.0.0.0:2380 \</span><br><span class="line">  -initial-advertise-peer-urls https://0.0.0.0:12380 \</span><br><span class="line">  -initial-cluster-token etcd-cluster \</span><br><span class="line">  -initial-cluster &quot;etcd_1=http://0.0.0.0:12380,etcd_2=http://0.0.0.0:22380,etcd_3=http://0.0.0.0:32380&quot; \</span><br><span class="line">  -initial-cluster-state new</span><br></pre></td></tr></table></figure>
-<p>带ssl证书的集群搭建，三个容器都要启动</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">./etcd -name etcd_1 \</span><br><span class="line">  --auto-tls=true \</span><br><span class="line">  --client-cert-auth=true \</span><br><span class="line">  --cert-file=/ssl/server.pem \</span><br><span class="line">  --key-file=/ssl/server-key.pem \</span><br><span class="line">  --trusted-ca-file=/ssl/ca.pem \</span><br><span class="line">  --peer-auto-tls=true \</span><br><span class="line">  --peer-cert-file=/ssl/peer.pem \</span><br><span class="line">  --peer-key-file=/ssl/peer-key.pem \</span><br><span class="line">  --peer-client-cert-auth=true \</span><br><span class="line">  --peer-trusted-ca-file=/ssl/ca.pem \</span><br><span class="line">  -advertise-client-urls https://0.0.0.0:2379 \</span><br><span class="line">  -listen-client-urls https://0.0.0.0:2379 \</span><br><span class="line">  -listen-peer-urls https://0.0.0.0:2380 \</span><br><span class="line">  -initial-advertise-peer-urls https://0.0.0.0:12380 \</span><br><span class="line">  -initial-cluster-token etcd-cluster \</span><br><span class="line">  -initial-cluster &quot;etcd_1=https://0.0.0.0:12380,etcd_2=https://0.0.0.0:22380,etcd_3=https://0.0.0.0:32380&quot; \</span><br><span class="line">  -initial-cluster-state new</span><br></pre></td></tr></table></figure>
-<p>注意<code>-initial-advertise-peer-urls</code>字段，<code>-initial-cluster</code>字段填写宿主机的ip地址</p>
-<p>不带证书检查集群的状态</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./etcdctl endpoint status</span><br></pre></td></tr></table></figure>
-<p>带证书检查集群的状态</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">./etcdctl \</span><br><span class="line">  --cacert=/ssl/ca.pem \</span><br><span class="line">  --cert=/ssl/server.pem \</span><br><span class="line">  --key=/ssl/server-key.pem \</span><br><span class="line">  --endpoints https://127.0.0.1:2379 \</span><br><span class="line">  endpoint status</span><br></pre></td></tr></table></figure>
-<p>不带证书集群新增etcd节点（先添加，后启动）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./etcdctl --endpoints http://0.0.0.0:12380 member add etcd_4 http://0.0.0.0:42380</span><br></pre></td></tr></table></figure>
-<p>带证书集群新增etcd节点（先添加，后启动）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">./etcdctl \</span><br><span class="line">  --cacert=./ca.pem \</span><br><span class="line">  --cert=./server.pem \</span><br><span class="line">  --key=./server-key.pem \</span><br><span class="line">  --endpoints http://0.0.0.0:12380 member add etcd_4 http://0.0.0.0:42380</span><br></pre></td></tr></table></figure>
-<p>不带证书启动etcd_4节点</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">./etcd -name etcd_4 \</span><br><span class="line">  -advertise-client-urls https://0.0.0.0:2379 \</span><br><span class="line">  -listen-client-urls https://0.0.0.0:2379 \</span><br><span class="line">  -listen-peer-urls https://0.0.0.0:2380 \</span><br><span class="line">  -initial-advertise-peer-urls https://0.0.0.0:42380 \</span><br><span class="line">  -initial-cluster-token etcd-cluster \</span><br><span class="line">  -initial-cluster &quot;etcd_1=https://0.0.0.0:12380,etcd_2=https://0.0.0.0:22380,etcd_3=https://0.0.0.0:32380,etcd_4=https://0.0.0.0:42380&quot; \</span><br><span class="line">  -initial-cluster-state new</span><br></pre></td></tr></table></figure>
-<p>带证书同理</p>
-
-            
-        </article>
-    </div>
-    
-    <div class="nexmoe-post">
-        <a href="/2021/09-05-CentOS%E4%B8%8B%E7%9A%84etcd%E7%9A%84%E6%90%AD%E5%BB%BA/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
-                    <img data-src="https://cdn.jsdelivr.net/gh/cn-wumo/cn-wumo.github.io@latest/images/CentOS下的etcd的搭建.jfif" data-sizes="auto" alt="CentOS下的etcd的搭建" class="lazyload">
-                    <h1>CentOS下的etcd的搭建</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2021年09月05日</a>
-            <a><i class="nexmoefont icon-areachart"></i>195 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
-        </div>
-
-        <article>
-            
-                <p>首先是从官网下载etcd所需的工具</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install wget -y</span><br></pre></td></tr></table></figure>
-<p>使用wget下载压缩文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/etcd-io/etcd/releases/download/v3.5.0/etcd-v3.5.0-linux-amd64.tar.gz</span><br></pre></td></tr></table></figure>
-<hr>
-<p>更多的版本可以访问</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/etcd-io/etcd/releases</span><br></pre></td></tr></table></figure>
-<hr>
-<p>解压当前目录下的压缩文件，删除压缩文件包</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/etcd-io/etcd/releases/download/v3.5.0/etcd-v3.5.0-linux-amd64.tar.gz</span><br><span class="line">tar -xvf etcd-v3.5.0-linux-amd64.tar.gz</span><br><span class="line">rm -rf etcd-v3.5.0-linux-amd64.tar.gz</span><br></pre></td></tr></table></figure>
-<p>启动etcd单节点</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">./etcd -name etcd1 \</span><br><span class="line">  -advertise-client-urls http://0.0.0.0:2379 \</span><br><span class="line">  -listen-client-urls http://0.0.0.0:2379 \</span><br><span class="line">  -initial-advertise-peer-urls http://0.0.0.0:2380</span><br></pre></td></tr></table></figure>
-<p>测试节点状态</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./etcdctl endpoint status</span><br></pre></td></tr></table></figure>
-<p>返回<code>127.0.0.1:2379, 1c70f9bbb41018f, 3.5.0, 20 kB, true, false, 2, 4, 4, </code>表明etcd程序正常运行</p>
-
-            
-        </article>
-    </div>
-    
 </section>
 
             <div class="nexmoe-post-right">
@@ -422,7 +342,7 @@
 
  
 
-<script async src="/js/app.js?v=1631356937211"></script>
+<script async src="/js/app.js?v=1631356937213"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
