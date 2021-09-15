@@ -21,9 +21,9 @@
 <meta property="article:author" content="cn_wumo">
 <meta name="twitter:card" content="summary">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
-    <link rel="stylesheet" href="/css/style.css?v=1631689334366">
+    <link rel="stylesheet" href="/css/style.css?v=1631693622312">
     
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1631689334366">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1631693622312">
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 <body class="mdui-drawer-body-left">
@@ -47,7 +47,7 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>3</div>
+        <div><span>文章</span>4</div>
         <div><span>标签</span>4</div>
         <div><span>分类</span>4</div>
     </div>
@@ -122,7 +122,7 @@
 
         <li class="category-list-item">
           <a class="category-list-link" href="/categories/中间件/">中间件</a>
-          <span class="category-list-count">1</span>
+          <span class="category-list-count">2</span>
         </li>
 
         
@@ -157,7 +157,7 @@
     
   <div class="nexmoe-widget-wrap">
     <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
-      <a href="/tags/Etcd/" style="font-size: 10px;">-Etcd</a> <a href="/tags/Apisix/" style="font-size: 10px;">Apisix</a> <a href="/tags/Etcd/" style="font-size: 10px;">Etcd</a> <a href="/tags/%E7%BD%91%E5%85%B3/" style="font-size: 10px;">网关</a>
+      <a href="/tags/Apisix/" style="font-size: 10px;">Apisix</a> <a href="/tags/Etcd/" style="font-size: 20px;">Etcd</a> <a href="/tags/apisix/" style="font-size: 10px;">apisix</a> <a href="/tags/%E7%BD%91%E5%85%B3/" style="font-size: 10px;">网关</a>
     </div>
     
   </div>
@@ -167,7 +167,7 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">文章归档</h3>
     <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -179,6 +179,10 @@
     <h3 class="nexmoe-widget-title">最新文章</h3>
     <div class="nexmoe-widget">
       <ul>
+        
+          <li>
+            <a href="/2021/09-15-apisix%E5%9F%BA%E4%BA%8E%E7%AB%AF%E5%8F%A3%E7%9A%84SSL%E8%B7%AF%E7%94%B1/">apisix基于端口的SSL路由</a>
+          </li>
         
           <li>
             <a href="/2021/09-11-apisix%E5%9F%BA%E4%BA%8Eusername%E5%92%8Cpassword%E7%9A%84JWT%E9%AA%8C%E8%AF%81%E6%8F%92%E4%BB%B6/">apisix基于username和password的JWT验证插件</a>
@@ -211,6 +215,110 @@
             <section class="nexmoe-posts">
     
     <div class="nexmoe-post">
+        <a href="/2021/09-15-apisix%E5%9F%BA%E4%BA%8E%E7%AB%AF%E5%8F%A3%E7%9A%84SSL%E8%B7%AF%E7%94%B1/">
+            
+                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
+                    <img data-src="https://cdn.jsdelivr.net/gh/cn-wumo/cn-wumo.github.io@latest/images/apisix基于端口的SSL路由.jpeg" data-sizes="auto" alt="apisix基于端口的SSL路由" class="lazyload">
+                    <h1>apisix基于端口的SSL路由</h1>
+                </div>
+            
+        </a>
+
+        <div class="nexmoe-post-meta nexmoe-rainbow">
+            <a><i class="nexmoefont icon-calendar-fill"></i>2021年09月15日</a>
+            <a><i class="nexmoefont icon-areachart"></i>1.2k 字</a>
+            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
+        </div>
+
+        <article>
+            
+                <h1 id="插件说明"><a href="#插件说明" class="headerlink" title="插件说明"></a>插件说明</h1><p>基于radixtree_sni路由插件，使用port字段而非sni进行路由选择。</p>
+<p>radixtree_port依赖的SSL属性如下：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>可选项</th>
+<th>类型</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cert</td>
+<td>必需</td>
+<td>证书</td>
+<td>https 证书</td>
+<td></td>
+</tr>
+<tr>
+<td>key</td>
+<td>必需</td>
+<td>私钥</td>
+<td>https 证书私钥</td>
+<td></td>
+</tr>
+<tr>
+<td>port</td>
+<td>必需</td>
+<td>匹配规则</td>
+<td>需要匹配的端口</td>
+<td></td>
+</tr>
+<tr>
+<td>certs</td>
+<td>可选</td>
+<td>证书字符串数组</td>
+<td>当你想给同一个域名配置多个证书时，除了第一个证书需要通过 cert 传递外，剩下的证书可以通过该参数传递上来</td>
+<td></td>
+</tr>
+<tr>
+<td>keys</td>
+<td>可选</td>
+<td>私钥字符串数组</td>
+<td>certs 对应的证书私钥，注意要跟 certs 一一对应</td>
+<td></td>
+</tr>
+<tr>
+<td>client.ca</td>
+<td>可选</td>
+<td>证书</td>
+<td>设置将用于客户端证书校验的 CA 证书。该特性需要 OpenResty 1.19+</td>
+<td></td>
+</tr>
+<tr>
+<td>client.depth</td>
+<td>可选</td>
+<td>辅助</td>
+<td>设置客户端证书校验的深度，默认为 1。该特性需要 OpenResty 1.19+</td>
+<td></td>
+</tr>
+<tr>
+<td>labels</td>
+<td>可选</td>
+<td>匹配规则</td>
+<td>标识附加属性的键值对</td>
+<td>{“version”:”v2”,”build”:”16”,”env”:”production”}</td>
+</tr>
+</tbody></table>
+<h1 id="安装流程"><a href="#安装流程" class="headerlink" title="安装流程"></a>安装流程</h1><p>复制插件到router目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/apisix/apisix/ssl/router</span><br><span class="line">vi ./radixtree_port.lua    #键入插件代码</span><br></pre></td></tr></table></figure>
+
+<p>修改SSL模板配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/apisix</span><br><span class="line">vi ./schema_def.lua    #修改_M.SSL配置</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">_M.ssl = &#123;</span><br><span class="line">    type = &quot;object&quot;,</span><br><span class="line">    properties = &#123;</span><br><span class="line">        id = id_schema,</span><br><span class="line">        cert = certificate_scheme,</span><br><span class="line">        key = private_key_schema,</span><br><span class="line">        certs = &#123;</span><br><span class="line">            type = &quot;array&quot;,</span><br><span class="line">            items = certificate_scheme,</span><br><span class="line">        &#125;,</span><br><span class="line">        keys = &#123;</span><br><span class="line">            type = &quot;array&quot;,</span><br><span class="line">            items = private_key_schema,</span><br><span class="line">        &#125;,</span><br><span class="line">        port = &#123;</span><br><span class="line">            type = &quot;integer&quot;</span><br><span class="line">        &#125;,   --changed</span><br><span class="line">        client = &#123;</span><br><span class="line">            type = &quot;object&quot;,</span><br><span class="line">            properties = &#123;</span><br><span class="line">                ca = certificate_scheme,</span><br><span class="line">                depth = &#123;</span><br><span class="line">                    type = &quot;integer&quot;,</span><br><span class="line">                    minimum = 0,</span><br><span class="line">                    default = 1,</span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;,</span><br><span class="line">            required = &#123;&quot;ca&quot;&#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">        exptime = &#123;</span><br><span class="line">            type = &quot;integer&quot;,</span><br><span class="line">            minimum = 1588262400,  -- 2020/5/1 0:0:0</span><br><span class="line">        &#125;,</span><br><span class="line">        labels = labels_def,</span><br><span class="line">        status = &#123;</span><br><span class="line">            description = &quot;ssl status, 1 to enable, 0 to disable&quot;,</span><br><span class="line">            type = &quot;integer&quot;,</span><br><span class="line">            enum = &#123;1, 0&#125;,</span><br><span class="line">            default = 1</span><br><span class="line">        &#125;,</span><br><span class="line">        validity_end = timestamp_def,</span><br><span class="line">        validity_start = timestamp_def,</span><br><span class="line">        create_time = timestamp_def,</span><br><span class="line">        update_time = timestamp_def</span><br><span class="line">    &#125;,</span><br><span class="line">    required = &#123;&quot;port&quot;, &quot;key&quot;, &quot;cert&quot;&#125;,</span><br><span class="line">    additionalProperties = false,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="修改路由配置"><a href="#修改路由配置" class="headerlink" title="修改路由配置"></a>修改路由配置</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/apisix/conf</span><br><span class="line">vi ./config-default.yaml    #修改路由配置</span><br></pre></td></tr></table></figure>
+<p>删除或注释ssl: ‘radixtree_sni’字段，新增ssl: ‘radixtree_port’以选择路由插件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">……</span><br><span class="line">……</span><br><span class="line">router:</span><br><span class="line">    http: &#x27;radixtree_uri&#x27; </span><br><span class="line">  # ssl: &#x27;radixtree_sni&#x27; </span><br><span class="line">ssl: &#x27;radixtree_port&#x27;</span><br><span class="line">……</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+
+<h1 id="插件代码"><a href="#插件代码" class="headerlink" title="插件代码"></a>插件代码</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br></pre></td><td class="code"><pre><span class="line">--</span><br><span class="line">-- Licensed to the Apache Software Foundation (ASF) under one or more</span><br><span class="line">-- contributor license agreements.  See the NOTICE file distributed with</span><br><span class="line">-- this work for additional information regarding copyright ownership.</span><br><span class="line">-- The ASF licenses this file to You under the Apache License, Version 2.0</span><br><span class="line">-- (the &quot;License&quot;); you may not use this file except in compliance with</span><br><span class="line">-- the License.  You may obtain a copy of the License at</span><br><span class="line">--</span><br><span class="line">--     http://www.apache.org/licenses/LICENSE-2.0</span><br><span class="line">--</span><br><span class="line">-- Unless required by applicable law or agreed to in writing, software</span><br><span class="line">-- distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span><br><span class="line">-- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span><br><span class="line">-- See the License for the specific language governing permissions and</span><br><span class="line">-- limitations under the License.</span><br><span class="line">--</span><br><span class="line">local get_request      = require(&quot;resty.core.base&quot;).get_request</span><br><span class="line">local router_new       = require(&quot;apisix.utils.router&quot;).new</span><br><span class="line">local core             = require(&quot;apisix.core&quot;)</span><br><span class="line">local apisix_ssl       = require(&quot;apisix.ssl&quot;)</span><br><span class="line">local ngx_ssl          = require(&quot;ngx.ssl&quot;)</span><br><span class="line">local config_util      = require(&quot;apisix.core.config_util&quot;)</span><br><span class="line">local ipairs           = ipairs</span><br><span class="line">local type             = type</span><br><span class="line">local error            = error</span><br><span class="line">local str_find         = core.string.find</span><br><span class="line">local str_gsub         = string.gsub</span><br><span class="line">local ssl_certificates</span><br><span class="line">local radixtree_router</span><br><span class="line">local radixtree_router_ver</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">local _M = &#123;</span><br><span class="line">    version = 0.1,</span><br><span class="line">    server_name = ngx_ssl.server_name,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">local function create_router(ssl_items) --changed</span><br><span class="line">    local ssl_items = ssl_items or &#123;&#125;</span><br><span class="line"></span><br><span class="line">    local route_items = core.table.new(#ssl_items, 0)</span><br><span class="line">    local idx = 0</span><br><span class="line"></span><br><span class="line">    for _, ssl in config_util.iterate_values(ssl_items) do</span><br><span class="line">        if ssl.value ~= nil and</span><br><span class="line">            (ssl.value.status == nil or ssl.value.status == 1) then  -- compatible with old version</span><br><span class="line">            </span><br><span class="line">            local labels_port = tostring(ssl.value.port)</span><br><span class="line">            idx = idx + 1</span><br><span class="line">            route_items[idx] = &#123;</span><br><span class="line">                paths = labels_port,</span><br><span class="line">                handler = function (api_ctx)</span><br><span class="line">                    if not api_ctx then</span><br><span class="line">                        return</span><br><span class="line">                    end</span><br><span class="line">                    api_ctx.matched_ssl = ssl</span><br><span class="line">                end</span><br><span class="line">            &#125;</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    core.log.info(&quot;route items: &quot;, core.json.delay_encode(route_items, true))</span><br><span class="line">    -- for testing</span><br><span class="line">    if #route_items &gt; 1 then</span><br><span class="line">        core.log.info(&quot;we have more than 1 ssl certs now&quot;)</span><br><span class="line">    end</span><br><span class="line">    local router, err = router_new(route_items)</span><br><span class="line">    if not router then</span><br><span class="line">        return nil, err</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    return router</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">local function set_pem_ssl_key(port, cert, pkey) --changed</span><br><span class="line">    local r = get_request()</span><br><span class="line">    if r == nil then</span><br><span class="line">        return false, &quot;no request found&quot;</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    local parsed_cert, err = apisix_ssl.fetch_cert(port, cert)</span><br><span class="line">    if not parsed_cert then</span><br><span class="line">        return false, &quot;failed to parse PEM cert: &quot; .. err</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    local ok, err = ngx_ssl.set_cert(parsed_cert)</span><br><span class="line">    if not ok then</span><br><span class="line">        return false, &quot;failed to set PEM cert: &quot; .. err</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    local parsed_pkey, err = apisix_ssl.fetch_pkey(port, pkey)</span><br><span class="line">    if not parsed_cert then</span><br><span class="line">        return false, &quot;failed to parse PEM priv key: &quot; .. err</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    ok, err = ngx_ssl.set_priv_key(parsed_pkey)</span><br><span class="line">    if not ok then</span><br><span class="line">        return false, &quot;failed to set PEM priv key: &quot; .. err</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    return true</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function _M.match_and_set(api_ctx)</span><br><span class="line">    local err</span><br><span class="line">    if not radixtree_router or</span><br><span class="line">       radixtree_router_ver ~= ssl_certificates.conf_version then</span><br><span class="line">        radixtree_router, err = create_router(ssl_certificates.values)</span><br><span class="line">        if not radixtree_router then</span><br><span class="line">            return false, &quot;failed to create radixtree router: &quot; .. err</span><br><span class="line">        end</span><br><span class="line">        radixtree_router_ver = ssl_certificates.conf_version</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    local port = tostring(ngx_ssl.server_port())    --changed</span><br><span class="line">    local ok = radixtree_router:dispatch(port, nil, api_ctx)</span><br><span class="line"></span><br><span class="line">    if not ok then</span><br><span class="line">        core.log.error(&quot;failed to find any SSL certificate by Port: &quot;, port)    --changed</span><br><span class="line">        return false</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    local matched_ssl = api_ctx.matched_ssl</span><br><span class="line">    core.log.info(&quot;debug - matched: &quot;, core.json.delay_encode(matched_ssl, true))</span><br><span class="line"></span><br><span class="line">    ngx_ssl.clear_certs()</span><br><span class="line"></span><br><span class="line">    ok, err = set_pem_ssl_key(port, matched_ssl.value.cert,</span><br><span class="line">                              matched_ssl.value.key)    --changed</span><br><span class="line">    if not ok then</span><br><span class="line">        return false, err</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    -- multiple certificates support.</span><br><span class="line">    if matched_ssl.value.certs then</span><br><span class="line">        for i = 1, #matched_ssl.value.certs do</span><br><span class="line">            local cert = matched_ssl.value.certs[i]</span><br><span class="line">            local key = matched_ssl.value.keys[i]</span><br><span class="line"></span><br><span class="line">            ok, err = set_pem_ssl_key(port, cert, key)  --changed</span><br><span class="line">            if not ok then</span><br><span class="line">                return false, err</span><br><span class="line">            end</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    if matched_ssl.value.client then</span><br><span class="line">        local ca_cert = matched_ssl.value.client.ca</span><br><span class="line">        local depth = matched_ssl.value.client.depth</span><br><span class="line">        if apisix_ssl.support_client_verification() then</span><br><span class="line">            local parsed_cert, err = apisix_ssl.fetch_cert(port, ca_cert)    --changed</span><br><span class="line">            if not parsed_cert then</span><br><span class="line">                return false, &quot;failed to parse client cert: &quot; .. err</span><br><span class="line">            end</span><br><span class="line"></span><br><span class="line">            local ok, err = ngx_ssl.verify_client(parsed_cert, depth)</span><br><span class="line">            if not ok then</span><br><span class="line">                return false, err</span><br><span class="line">            end</span><br><span class="line"></span><br><span class="line">            api_ctx.ssl_client_verified = true</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    return true</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function _M.ssls()</span><br><span class="line">    if not ssl_certificates then</span><br><span class="line">        return nil, nil</span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    return ssl_certificates.values, ssl_certificates.conf_version</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function _M.init_worker()</span><br><span class="line">    local err</span><br><span class="line">    ssl_certificates, err = core.config.new(&quot;/ssl&quot;, &#123;</span><br><span class="line">        automatic = true,</span><br><span class="line">        item_schema = core.schema.ssl,</span><br><span class="line">        checker = function (item, schema_type)</span><br><span class="line">            return apisix_ssl.check_ssl_conf(true, item)</span><br><span class="line">        end,</span><br><span class="line">    &#125;)</span><br><span class="line">    if not ssl_certificates then</span><br><span class="line">        error(&quot;failed to create etcd instance for fetching ssl certificates: &quot;</span><br><span class="line">              .. err)</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">return _M</span><br></pre></td></tr></table></figure>
+
+            
+        </article>
+    </div>
+    
+    <div class="nexmoe-post">
         <a href="/2021/09-11-apisix%E5%9F%BA%E4%BA%8Eusername%E5%92%8Cpassword%E7%9A%84JWT%E9%AA%8C%E8%AF%81%E6%8F%92%E4%BB%B6/">
             
                 <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
@@ -234,11 +342,11 @@
 <thead>
 <tr>
 <th>名称</th>
-<th>描述</th>
 <th>类型</th>
 <th>必选项</th>
 <th>默认值</th>
 <th>有效值</th>
+<th>描述</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -422,7 +530,7 @@
 
  
 
-<script async src="/js/app.js?v=1631689334367"></script>
+<script async src="/js/app.js?v=1631693622313"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
